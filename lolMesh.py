@@ -432,10 +432,6 @@ def buildMesh(filepath,header, materials, metaData, indices, vertices):
 
     #set active
     obj.select_set(True)
-    bpy.ops.object.mode_set(mode='EDIT')
-    bpy.ops.mesh.select_all(action='SELECT')
-    bpy.ops.mesh.flip_normals()
-    bpy.ops.object.mode_set(mode='OBJECT')
 
     return {'FINISHED'}
     
@@ -453,7 +449,7 @@ def addDefaultWeights(boneList, sknVertices, armatureObj, meshObj):
     We will create a vertex group for each bone using their index number
     '''
 
-    for id, bone in enumerate(boneList):
+    for id, bone in     (boneList):
         meshObj.vertex_groups.new(name=bone.name)
 
     '''
@@ -480,14 +476,8 @@ def exportSKN(meshObj, output_filepath, input_filepath, BASE_ON_IMPORT, VERSION)
     bpy.ops.object.mode_set(mode='OBJECT')
     bpy.ops.object.select_all(action='DESELECT')
     meshObj.select_set(True)
-    bpy.ops.transform.resize(value=(1.0, -1.0, 1.0), orient_type='GLOBAL');
     bpy.ops.transform.rotate(value=-(math.radians(90)), orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-    bpy.ops.object.mode_set(mode='EDIT')
-    bpy.ops.mesh.select_all(action='SELECT')
-    bpy.ops.mesh.flip_normals()
-    bpy.ops.object.mode_set(mode='OBJECT')
-
+    bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
 
     
     containsVertexColor = ('lolVertexColor' in meshObj.data.vertex_colors) and ('lolVertexColorAlpha' in meshObj.data.vertex_colors)
@@ -682,12 +672,7 @@ def exportSKN(meshObj, output_filepath, input_filepath, BASE_ON_IMPORT, VERSION)
     bpy.ops.object.mode_set(mode='OBJECT')
     meshObj.select_set(True)
     bpy.ops.transform.rotate(value=(math.radians(90)), orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-    bpy.ops.transform.resize(value=(1.0, -1.0, 1.0), orient_type='GLOBAL');
-    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-    bpy.ops.object.mode_set(mode='EDIT')
-    bpy.ops.mesh.select_all(action='SELECT')
-    bpy.ops.mesh.flip_normals()
-    bpy.ops.object.mode_set(mode='OBJECT')
+    bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
 
 def importSCO(filename):
     '''SCO files contains meshes in plain text'''

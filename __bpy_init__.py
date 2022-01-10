@@ -73,20 +73,20 @@ class IMPORT_OT_lol(bpy.types.Operator, ImportHelper):
     bl_label="Import LoL"
     bl_idname="import.lol"
 
-    SKN_FILE : props.StringProperty(name='Mesh', description='Model .skn file', default='')
-    SKL_FILE : props.StringProperty(name='Skeleton', description='Model .skl file', default='')
+    SKN_FILE = props.StringProperty(name='Mesh', description='Model .skn file', default='')
+    SKL_FILE = props.StringProperty(name='Skeleton', description='Model .skl file', default='')
     # DDS_FILE = props.StringProperty(name='Texture', description='Model .dds file')    
-    MODEL_DIR : props.StringProperty()
-    IMPORT_TEXTURES : props.BoolProperty(name='ImportTextures', description='Loads the textures for the applied mesh', default=True)
-    CLEAR_SCENE : props.BoolProperty(name='ClearScene', description='Clear current scene before importing?', default=True)
-    APPLY_WEIGHTS : props.BoolProperty(name='LoadWeights', description='Load default bone weights from .skn file', default=True)
+    MODEL_DIR = props.StringProperty()
+    IMPORT_TEXTURES = props.BoolProperty(name='ImportTextures', description='Loads the textures for the applied mesh', default=True)
+    CLEAR_SCENE = props.BoolProperty(name='ClearScene', description='Clear current scene before importing?', default=True)
+    APPLY_WEIGHTS = props.BoolProperty(name='LoadWeights', description='Load default bone weights from .skn file', default=True)
 
-    MATERIAL_LIST = []
-    TEXTURE_LIST = []
-    TEXTURE_PROPERTIES : props.PointerProperty(name='Materials', type=MaterialTextures)
+    MATERIAL_LIST= []
+    TEXTURE_LIST= []
+    TEXTURE_PROPERTIES = props.PointerProperty(name='Materials', type=MaterialTextures)
     
 
-    files : props.CollectionProperty(name="File Path",type=bpy.types.OperatorFileListElement)
+    files= props.CollectionProperty(name="File Path",type=bpy.types.OperatorFileListElement)
 
     def draw(self, context):
         layout = self.layout
@@ -153,8 +153,8 @@ class IMPORT_OT_lolanm(bpy.types.Operator, ImportHelper):
     bl_label="Import LoL Animation"
     bl_idname="import.lolanm"
 
-    ANM_FILE : props.StringProperty(name='Animation', description='Animation .anm file')
-    MODEL_DIR : props.StringProperty()
+    ANM_FILE = props.StringProperty(name='Animation', description='Animation .anm file')
+    MODEL_DIR = props.StringProperty()
        
     def draw(self, context):
         layout = self.layout
@@ -177,10 +177,10 @@ class EXPORT_OT_lolanm(bpy.types.Operator, ImportHelper):
     bl_label="Export LoL Animation"
     bl_idname="export.lolanm"
     
-    OUTPUT_FILE : props.StringProperty(name='Export File', description='File to which animation will be exported')
-    INPUT_FILE : props.StringProperty(name='Import File', description='File to import certain metadata from')
-    OVERWRITE_FILE_VERSION : props.BoolProperty(name='Overwrite File Version', description='Write a version different from the imported file', default=False)
-    VERSION : props.IntProperty(name='File Version', description='Overwrite file version', default=3)
+    OUTPUT_FILE = props.StringProperty(name='Export File', description='File to which animation will be exported')
+    INPUT_FILE = props.StringProperty(name='Import File', description='File to import certain metadata from')
+    OVERWRITE_FILE_VERSION = props.BoolProperty(name='Overwrite File Version', description='Write a version different from the imported file', default=False)
+    VERSION = props.IntProperty(name='File Version', description='Overwrite file version', default=3)
     
     filename_ext = '.anm'
     def draw(self, context):
@@ -210,11 +210,11 @@ class EXPORT_OT_lol(bpy.types.Operator, ExportHelper):
     bl_idname="export.lol"
     bl_label = "Export .skn"
 
-    VERSION : props.IntProperty(name='Version No.', description='.SKN version number', default=4)
-    OUTPUT_FILE : props.StringProperty(name='Export File', description='File to which model will be exported')
-    BASE_ON_IMPORT : props.BoolProperty(name='Base On Imported SKN', description='Base writing on an imported SKN of choice', default=True)
-    INPUT_FILE : props.StringProperty(name='Import File', description='File to import certain metadata from')
-    MODEL_DIR : props.StringProperty()
+    VERSION = props.IntProperty(name='Version No.', description='.SKN version number', default=4)
+    OUTPUT_FILE = props.StringProperty(name='Export File', description='File to which model will be exported')
+    BASE_ON_IMPORT = props.BoolProperty(name='Base On Imported SKN', description='Base writing on an imported SKN of choice', default=True)
+    INPUT_FILE = props.StringProperty(name='Import File', description='File to import certain metadata from')
+    MODEL_DIR = props.StringProperty()
 
     filename_ext = '.skn'
     def draw(self, context):
@@ -247,9 +247,9 @@ class EXPORT_OT_skl(bpy.types.Operator, ExportHelper):
     bl_idname="export.skl"
     bl_label = "Export .skl"
 
-    OUTPUT_FILE : props.StringProperty(name='Export File', description='File to which skeleton will be exported')
-    INPUT_FILE : props.StringProperty(name='Import File', description='File to import certain metadata from')
-    MODEL_DIR : props.StringProperty()
+    OUTPUT_FILE = props.StringProperty(name='Export File', description='File to which skeleton will be exported')
+    INPUT_FILE = props.StringProperty(name='Import File', description='File to import certain metadata from')
+    MODEL_DIR = props.StringProperty()
 
     filename_ext = '.skl'
     def draw(self, context):
@@ -577,32 +577,32 @@ def unregister():
     bpy.types.TOPBAR_MT_file_export.remove(menu_func_export)
 
 
-# def test_anm():
-#     base_dir = "C:\\Users\\Tath\\Downloads\\New folder\\DATA\\Characters\\Annie\\"
-#     skn = "Annie.skn"
-#     skl = "Annie.skl"
-#     anm_dir = base_dir + "animations\\"
-#     anm = "annie_channel.anm"
+def test_anm():
+    base_dir = "C:\\Users\\Tath\\Downloads\\New folder\\DATA\\Characters\\Annie\\"
+    skn = "Annie.skn"
+    skl = "Annie.skl"
+    anm_dir = base_dir + "animations\\"
+    anm = "annie_channel.anm"
 
-#     skn_path = base_dir + skn
-#     skl_path = base_dir + skl
-#     anm_path = anm_dir + anm
+    skn_path = base_dir + skn
+    skl_path = base_dir + skl
+    anm_path = anm_dir + anm
 
-#     skl_header, skl_bone_list, reordered_bone_list = lolSkeleton.importSKL(skl_path)
-#     anm_header, anm_bone_list = lolAnimation.importANM(anm_path)
+    skl_header, skl_bone_list, reordered_bone_list = lolSkeleton.importSKL(skl_path)
+    anm_header, anm_bone_list = lolAnimation.importANM(anm_path)
 
-#     import_char(MODEL_DIR=base_dir, SKN_FILE=skn, SKL_FILE=skl, DDS_FILE="",
-#             CLEAR_SCENE=True, APPLY_WEIGHTS=True, APPLY_TEXTURE=False)
-#     import_animation(MODEL_DIR=anm_dir, ANM_FILE=anm)
+    import_char(MODEL_DIR=base_dir, SKN_FILE=skn, SKL_FILE=skl, DDS_FILE="",
+            CLEAR_SCENE=True, APPLY_WEIGHTS=True, APPLY_TEXTURE=False)
+    import_animation(MODEL_DIR=anm_dir, ANM_FILE=anm)
 
-#     boneCheckList = ['r_hand']
-#     for bone in skl_bone_list:
-#         print("SKL bone: %r" % bone.name)
-#         if bone.name.lower() in boneCheckList:
-#             print("p: %s" % bone.matrix[3::4])
-#     for bone in anm_bone_list:
-#         if bone.name.lower() in boneCheckList:
-#             print("ANM bone: %s" % bone.name)
-#             for f in range(0, anm_header.numFrames):
-#                 print("p: %s" % bone.get_frame(f)[0])
+    boneCheckList = ['r_hand']
+    for bone in skl_bone_list:
+        print("SKL bone: %r" % bone.name)
+        if bone.name.lower() in boneCheckList:
+            print("p: %s" % bone.matrix[3::4])
+    for bone in anm_bone_list:
+        if bone.name.lower() in boneCheckList:
+            print("ANM bone: %s" % bone.name)
+            for f in range(0, anm_header.numFrames):
+                print("p: %s" % bone.get_frame(f)[0])
 
