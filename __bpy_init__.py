@@ -210,11 +210,11 @@ class EXPORT_OT_lol(bpy.types.Operator, ExportHelper):
     bl_idname="export.lol"
     bl_label = "Export .skn"
 
-    VERSION = props.IntProperty(name='Version No.', description='.SKN version number', default=4)
-    OUTPUT_FILE = props.StringProperty(name='Export File', description='File to which model will be exported')
-    BASE_ON_IMPORT = props.BoolProperty(name='Base On Imported SKN', description='Base writing on an imported SKN of choice', default=True)
-    INPUT_FILE = props.StringProperty(name='Import File', description='File to import certain metadata from')
-    MODEL_DIR = props.StringProperty()
+    VERSION : props.IntProperty(name='Version No.', description='.SKN version number', default=4)
+    OUTPUT_FILE : props.StringProperty(name='Export File', description='File to which model will be exported')
+    BASE_ON_IMPORT : props.BoolProperty(name='Base On Imported SKN', description='Base writing on an imported SKN of choice', default=True)
+    INPUT_FILE : props.StringProperty(name='Import File', description='File to import certain metadata from')
+    MODEL_DIR : props.StringProperty()
 
     filename_ext = '.skn'
     def draw(self, context):
@@ -227,10 +227,10 @@ class EXPORT_OT_lol(bpy.types.Operator, ExportHelper):
         self.OUTPUT_FILE = fileProps.filename
 
         box = layout.box()
-        box.prop(self.properties, 'VERSION')
-        box.prop(self.properties, 'OUTPUT_FILE')
-        box.prop(self.properties, 'BASE_ON_IMPORT')
-        box.prop(self.properties, 'INPUT_FILE')
+        box.prop(self, 'VERSION')
+        box.prop(self, 'OUTPUT_FILE')
+        box.prop(self, 'BASE_ON_IMPORT')
+        box.prop(self, 'INPUT_FILE')
         
     def execute(self, context):
         export_char(MODEL_DIR=self.MODEL_DIR,
