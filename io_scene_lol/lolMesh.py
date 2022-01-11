@@ -206,6 +206,7 @@ class sknVertex():
 
         self.position = fields[0:3]
         self.boneIndex = fields[3:7]
+        print(self.boneIndex)
         self.weights = fields[7:11]
         self.normal = fields[11:14]
         self.texcoords = fields[14:16]
@@ -448,7 +449,7 @@ def addDefaultWeights(boneList, sknVertices, armatureObj, meshObj):
     We will create a vertex group for each bone using their index number
     '''
 
-    for id, bone in enumerate(boneList):
+    for id, bone in     (boneList):
         meshObj.vertex_groups.new(name=bone.name)
 
     '''

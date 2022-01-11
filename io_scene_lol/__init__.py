@@ -22,9 +22,9 @@ __all__ = ['lolMesh', 'lolSkeleton', '__bpy_init__']
 
 bl_info = {
     'name': 'Import League of Legends Character files (.skn;.skl)',
-    'author': 'Pascal Lis, Zac Berkowitz',
-    'version': (0,7),
-    'blender': (2,80,0),
+    'author': 'Pascal Lis, Zac Berkowitz, Yaosile',
+    'version': (0,8),
+    'blender': (2,90,0),
     "location": "File > Import-Export",
     "category": "Import-Export",
     'api': 31878,
